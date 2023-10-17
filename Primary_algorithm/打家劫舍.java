@@ -1,0 +1,26 @@
+class Solution {
+    public int rob(int[] nums) {
+        // 确认状态
+        // dp[i]:代表从第0家偷到第i家最大金额
+        int[] dp = new int[nums.length];
+        // 状态装换方程
+        // dp
+
+        // 初始条件和边界条件
+        if (nums.length == 1) {
+            return nums[0];
+
+        }
+        if (nums.length == 2) {
+            return Math.max(nums[0], nums[1]);
+
+        }
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]); // 从第一家偷到第二家的最大金额，应该是在第一家和第二家中选一个。
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+
+        }
+        return dp[nums.length - 1];
+    }
+}
